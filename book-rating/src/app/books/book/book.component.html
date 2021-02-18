@@ -4,8 +4,11 @@
 
     <div class="card-title">
       <h2>{{book.title}}
+        <span class="badge badge-secondary">
+          <ng-container *ngFor="let b of stars">⭐️</ng-container>
 
-        <span class="badge badge-secondary">{{book.rating}}</span>
+          <!-- <ng-container *brRepeat="book.rating">⭐️</ng-container> -->
+        </span>
       </h2>
     </div>
 
