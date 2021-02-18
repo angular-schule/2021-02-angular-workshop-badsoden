@@ -1,7 +1,8 @@
-<br-book [book]="books[0]"></br-book>
-<br-book [book]="books[1]"></br-book>
-<br-book [book]="books[2]"></br-book>
 
-<!-- TODO: implementiere eine Loop mit *ngFor -->
+<ng-container *ngFor="let b of books">
+  <br-book [book]="b"></br-book>
+</ng-container>
 
-<!-- TODO: Gib die Anzahl der Bücher aus! -->
+Anzahl der Bücher: {{ books.length }}
+
+
