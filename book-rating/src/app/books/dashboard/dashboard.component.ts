@@ -41,11 +41,18 @@ export class DashboardComponent implements OnInit {
   }
 
   rateUp(book: Book) {
-    console.info('rateUp', book);
-    // console.table(book);
+    const ratedBook = this.br.rateUp(book);
+    this.updateBook(ratedBook);
   }
 
   rateDown(book: Book) {
-    console.info('rateDown', book);
+    const ratedBook = this.br.rateDown(book);
+    this.updateBook(ratedBook);
+  }
+
+  updateBook(ratedBook: Book) {
+    this.books = this.books
+      .map(x => x.isbn === ratedBook.isbn ? ratedBook : x)
+      .sort((a, b) => b.rating - a.rating)
   }
 }
