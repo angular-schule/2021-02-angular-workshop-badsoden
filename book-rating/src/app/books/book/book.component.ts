@@ -1,5 +1,6 @@
 import { EventEmitter } from '@angular/core';
 import { Component, Input, OnInit, Output } from '@angular/core';
+import { DashboardComponent } from '../dashboard/dashboard.component';
 import { Book } from '../shared/book';
 
 @Component({
