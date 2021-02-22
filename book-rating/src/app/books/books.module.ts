@@ -17,7 +17,8 @@ import { CreateBookComponent } from './create-book/create-book.component';
   imports: [
     CommonModule,
     BooksRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    // HttpClientModule --- NIEMALS HIER!!!
   ],
   exports: [
     DashboardComponent
