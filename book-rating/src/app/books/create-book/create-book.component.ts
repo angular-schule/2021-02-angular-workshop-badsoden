@@ -15,4 +15,13 @@ export class CreateBookComponent {
     description: new FormControl()
   });
 
+  isValid(name: string): boolean {
+    const control = this.bookForm.get(name);
+    return control.touched && control.invalid;
+  }
+
+  hasError(name: string, code: string): boolean {
+    return undefined; // TODO
+  }
+
 }
