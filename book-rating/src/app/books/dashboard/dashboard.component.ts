@@ -43,7 +43,7 @@ export class DashboardComponent implements OnInit {
     }];
   }
 
-  rateUp(book: Book) {
+  rateUp(book: Book): void {
     const ratedBook = this.br.rateUp(book);
 
     // const ratedBook = {
@@ -54,14 +54,18 @@ export class DashboardComponent implements OnInit {
     this.updateBook(ratedBook);
   }
 
-  rateDown(book: Book) {
+  rateDown(book: Book): void {
     const ratedBook = this.br.rateDown(book);
     this.updateBook(ratedBook);
   }
 
-  updateBook(ratedBook: Book) {
+  updateBook(ratedBook: Book): void  {
     this.books = this.books
       .map(x => x.isbn === ratedBook.isbn ? ratedBook : x)
-      .sort((a, b) => b.rating - a.rating)
+      .sort((a, b) => b.rating - a.rating);
+  }
+
+  addBook(newBook: Book): void {
+    this.books = [...this.books, newBook];
   }
 }
