@@ -23,11 +23,15 @@ export class BookComponent {
     return new Array(this.book.rating);
   }
 
-  doRateDown() {
+  doRateDown(): void {
     this.rateDown.emit(this.book);
   }
 
-  doRateUp() {
+  doRateUp(): void {
     this.rateUp.emit(this.book);
+  }
+
+  log() {
+    console.log('Change Detection!', +new Date());
   }
 }
