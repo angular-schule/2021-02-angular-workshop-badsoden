@@ -11,7 +11,7 @@ import { BookRatingService } from '../shared/book-rating.service';
 })
 export class DashboardComponent implements OnInit {
 
-  books: Book[];
+  books: Book[] = [];
 
   constructor(private br: BookRatingService) {
   }

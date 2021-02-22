@@ -1,4 +1,4 @@
-import { EventEmitter } from '@angular/core';
+import { ChangeDetectionStrategy, EventEmitter } from '@angular/core';
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { DashboardComponent } from '../dashboard/dashboard.component';
 import { Book } from '../shared/book';
@@ -6,7 +6,8 @@ import { Book } from '../shared/book';
 @Component({
   selector: 'br-book',
   templateUrl: './book.component.html',
-  styleUrls: ['./book.component.scss']
+  styleUrls: ['./book.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BookComponent {
 
