@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 import { Book } from './book';
 
@@ -12,10 +13,10 @@ export class BookStoreService {
   constructor(private http: HttpClient) { }
 
   getBooks(): Observable<Book[]> {
-    return this.http.get<Book[]>('https://api.angular.schule/books');
+    return this.http.get<Book[]>(environment.backendUrl);
   }
 
   getSingleBook(isbn: string): Observable<Book> {
-    return this.http.get<Book>('https://api.angular.schule/books/' + isbn);
+    return this.http.get<Book>(environment.backendUrl + isbn);
   }
 }
