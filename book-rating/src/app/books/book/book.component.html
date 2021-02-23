@@ -1,7 +1,8 @@
 <div class="card mb-4">
   <div class="card-body bg-light">
     <!-- <img src="https://api.angular.schule/avatar/{{book.rating}}" class="float-right img-thumbnail"> -->
-    <img width="200" src="http://covers.openlibrary.org/b/isbn/{{book.isbn}}.jpg" class="float-right img-thumbnail">
+    <!-- <img width="200" src="http://covers.openlibrary.org/b/isbn/{{book.isbn}}.jpg" class="float-right img-thumbnail"> -->
+    <img width="200" [src]="book.firstThumbnailUrl" class="float-right img-thumbnail">
 
     <div class="card-title">
       <h2>{{book.title}}
