@@ -11,6 +11,8 @@
 
           <!-- <ng-container *brRepeat="book.rating">⭐️</ng-container> -->
         </span>
+
+        – {{ book.price | currency:'EUR' }}
       </h2>
     </div>
 
@@ -20,8 +22,9 @@
 
     <button (click)="doRateDown()" class="btn btn-primary mr-2">-</button>
     <button (click)="doRateUp()" class="btn btn-primary">+</button>
+    <a [routerLink]="['/books', book.isbn]" class="btn btn-secondary ml-2">Details</a>
 
-    {{ log() }}
+    {{ log()  }}
 
   </div>
 </div>
