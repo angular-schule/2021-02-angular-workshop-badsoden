@@ -7,6 +7,12 @@
 **Herzlich Willkommen – und schön, dass du dabei bist!**  
 In diesem Repository findest du während des Workshops den Quelltext unserer Beispielanwendung.
 
+# 🎮 Playground
+
+Du kannst dir entweder  
+* dieses Repository per Git herunterladen und in den Ordner `rxjs-playground` wechseln<br><br>**oder**<br><br>  
+* den Code als ZIP-Datei herunterladen: [rxjs-playground.zip](https://github.com/angular-schule/2021-02-angular-workshop-badsoden/files/6027267/rxjs-playground.zip)
+
 
 # ✅ Vorbereitung
 
