@@ -20,6 +20,10 @@
   <div class="form-group">
     <label for="title">Title</label>
     <input formControlName="title" type="text" class="form-control" id="title">
+
+    <ul>
+      <li *ngFor="let b of books$ | async">{{ b.title }}</li>
+    </ul>
   </div>
 
   <div class="form-group">

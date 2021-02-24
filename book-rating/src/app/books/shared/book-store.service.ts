@@ -19,4 +19,8 @@ export class BookStoreService {
   getSingleBook(isbn: string): Observable<Book> {
     return this.http.get<Book>(environment.backendUrl + isbn);
   }
+
+  search(term: string): Observable<Book[]> {
+    return this.http.get<Book[]>(environment.backendUrl + 'search/' + term);
+  }
 }

@@ -1,8 +1,8 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { of } from 'rxjs';
-import { catchError, map, switchMap } from 'rxjs/operators';
+import { EMPTY, of } from 'rxjs';
+import { catchError, map, retry, switchMap } from 'rxjs/operators';
 
 import { BookStoreService } from '../shared/book-store.service';
 
@@ -19,12 +19,14 @@ export class BookDetailsComponent {
   book$ = this.route.paramMap.pipe(
     map(paramMap => paramMap.get('isbn')),
     switchMap(isbn => this.bs.getSingleBook(isbn).pipe(
-      catchError((err: HttpErrorResponse) => of({
-        isbn: '00000',
-        title: 'Error',
-        description: err.message,
-        rating: 1
-      }))
+      retry(3),
+      // catchError((err: HttpErrorResponse) => of({
+      //   isbn: '00000',
+      //   title: 'Error',
+      //   description: err.message,
+      //   rating: 1
+      // }))
+      catchError((err: HttpErrorResponse) => EMPTY)
     )),
   );
 
