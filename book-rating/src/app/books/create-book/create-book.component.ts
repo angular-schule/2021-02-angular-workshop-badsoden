@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { mergeMap, tap } from 'rxjs/operators';
+import { EMPTY } from 'rxjs';
+import { catchError, debounceTime, distinctUntilChanged, filter, mergeMap, switchMap, tap } from 'rxjs/operators';
 import { Book } from '../shared/book';
 import { BookStoreService } from '../shared/book-store.service';
 
@@ -24,17 +25,14 @@ export class CreateBookComponent {
   loading = false; // geht nur ohne OnPush
 
   books$ = this.bookForm.get('title').valueChanges.pipe(
-    tap(term => console.log(term)),
-
-    // 0. Optional: Suche nicht nach leeren Strings
-    // 1. mit Verzögerung
-    // 1b. Optional: Nur veränderte Suchbegriffe
-    // 2. Veraltete Requests sollen abgebrochen werden
-    // 3. die Methode `bs.search()` soll verwendet werden
-    // 4. Optional: Mit Ladeanzeige (hinweis: hier "dürft" ihr mal tap() einsetzen)
-
-    // wrong method!
-    mergeMap(() => this.bs.getBooks())
+    filter(term => !!term),
+    debounceTime(1000),
+    distinctUntilChanged(),
+    tap(() => this.loading = true),
+    switchMap(term => this.bs.search(term).pipe(
+      catchError(() => EMPTY)
+    )),
+    tap(() => this.loading = true)
   );
 
   constructor(private bs: BookStoreService) {}

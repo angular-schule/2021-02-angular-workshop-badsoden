@@ -21,6 +21,8 @@
     <label for="title">Title</label>
     <input formControlName="title" type="text" class="form-control" id="title">
 
+    <div *ngIf="loading">Loading</div>
+
     <ul>
       <li *ngFor="let b of books$ | async">{{ b.title }}</li>
     </ul>
