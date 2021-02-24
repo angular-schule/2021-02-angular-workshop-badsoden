@@ -4,7 +4,12 @@
   {{ (book$ | async)?.rating }}
 </h2>
 
-<p>
+<button
+  (click)="showDetails = !showDetails"
+  class="btn btn-primary">Toggle Details</button>
+
+<p *ngIf="showDetails">
+  Details:
   {{ (book$ | async)?.description }}
 </p>
 
