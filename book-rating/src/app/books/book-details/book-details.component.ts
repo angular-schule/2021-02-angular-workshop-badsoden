@@ -1,8 +1,9 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
-import { concatMap, map, mergeMap, share, shareReplay, switchMap } from 'rxjs/operators';
-import { Book } from '../shared/book';
+import { of } from 'rxjs';
+import { catchError, map, switchMap } from 'rxjs/operators';
+
 import { BookStoreService } from '../shared/book-store.service';
 
 @Component({
@@ -18,12 +19,14 @@ export class BookDetailsComponent {
   book$ = this.route.paramMap.pipe(
     map(paramMap => paramMap.get('isbn')),
     switchMap(isbn => this.bs.getSingleBook(isbn)),
-    // share()
-    shareReplay(1)
+    catchError((err: HttpErrorResponse) => of({
+      isbn: '00000',
+      title: 'Error',
+      description: err.message,
+      rating: 1
+    }))
   );
 
   constructor(private route: ActivatedRoute, private bs: BookStoreService) {
   }
-
-
 }
