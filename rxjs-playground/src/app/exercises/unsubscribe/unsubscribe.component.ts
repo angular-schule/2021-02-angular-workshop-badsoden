@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subject, ReplaySubject, timer, Subscription } from 'rxjs';
-import { takeWhile, takeUntil } from 'rxjs/operators';
+import { takeWhile, takeUntil, take } from 'rxjs/operators';
 
 @Component({
   selector: 'rxw-unsubscribe',
@@ -25,7 +25,8 @@ export class UnsubscribeComponent implements OnInit, OnDestroy {
     const interval$ = timer(0, 1000);
 
     interval$.pipe(
-      takeUntil(this.dead$)
+      // takeUntil(this.dead$)
+      take(1)
     ).subscribe({
       next: e => this.log(e),
       error: err => this.log('❌ ERROR: ' + err),
