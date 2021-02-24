@@ -17,10 +17,7 @@ export class ErrorHandlingComponent {
   start() {
     this.es.randomError().pipe(
 
-      /******************************/
-
-      
-      /******************************/
+      catchError(err => of('😎'))
 
     ).subscribe({
       next: e => this.logStream$.next(e),
